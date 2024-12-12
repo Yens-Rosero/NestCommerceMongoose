@@ -7,11 +7,13 @@ import {
   Put,
   Delete,
   ParseIntPipe,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 
 import { CategoriesService } from '../services/categories.service';
+import { MongoIdPipe } from 'src/common/mongo-id.pipe';
 import { CreateCategoryDto, UpdateCategoryDto } from './../dtos/category.dtos';
-
 @Controller('categories')
 export class CategoriesController {
   constructor(private categoriesService: CategoriesService) {}
@@ -21,9 +23,9 @@ export class CategoriesController {
     return this.categoriesService.findAll();
   }
 
-  @Get(':id')
-  get(@Param('id', ParseIntPipe) id: number) {
-    return this.categoriesService.findOne(id);
+  @Get(':productId') // :productId coincide con el decorador @Param
+  getOne(@Param('productId', MongoIdPipe) productId: string) {
+    return this.categoriesService.findOne(productId);
   }
 
   @Post()
@@ -33,14 +35,14 @@ export class CategoriesController {
 
   @Put(':id')
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', MongoIdPipe) id: string,
     @Body() payload: UpdateCategoryDto,
   ) {
-    return this.categoriesService.update(id, payload);
+    return this.categoriesService.update(id,payload);
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.categoriesService.remove(+id);
+  remove(@Param('id', MongoIdPipe) id: string) {
+    return this.categoriesService.remove(id);
   }
 }
