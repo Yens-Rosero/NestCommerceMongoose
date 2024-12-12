@@ -1,73 +1,51 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+📚 **NestJS MongoDB API** 🚀
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este proyecto es una aplicación basada en **NestJS**, utilizando **MongoDB** con el ORM **Mongoose**. La estructura modularizada y las relaciones implementadas siguen las mejores prácticas de responsabilidad única y arquitectura limpia, garantizando la escalabilidad y el mantenimiento eficiente del código.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+📖 **Descripción del Proyecto**
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Esta aplicación NestJS está diseñada para ofrecer:
 
-## Installation
+- 📦 **Modularización eficiente** para una arquitectura escalable.
+- 🔗 **Conexión a MongoDB** utilizando Mongoose como ORM.
+- **Relaciones uno a uno y uno a muchos entre entidades**.
+- Ejemplos concretos de cómo conectarse y configurar servicios mediante **UseFactory**.
+- Implementación de las mejores prácticas de responsabilidad única y arquitectura en NestJS.
 
-```bash
-$ npm install
-```
+---
 
-## Running the app
+🔍 **Características Principales**
 
-```bash
-# development
-$ npm run start
+- **Uso de Mongoose**  
+  - Conecta tu proyecto a MongoDB de forma rápida y eficiente.  
+  - Implementa relaciones:  
+    - **Relación uno a uno** (ej. Usuario ↔ Perfil).  
+    - **Relación uno a muchos** (ej. Categorías ↔ Productos).  
 
-# watch mode
-$ npm run start:dev
+- **Modularización**  
+  - La estructura modularizada permite agregar y escalar funcionalidades sin perder la organización del proyecto.
 
-# production mode
-$ npm run start:prod
-```
+- **Responsabilidad Única (SRP - Single Responsibility Principle)**  
+  - Cada archivo y clase sigue el principio de responsabilidad única, facilitando el mantenimiento y las actualizaciones futuras.
 
-## Test
+---
 
-```bash
-# unit tests
-$ npm run test
+🛠 **Tecnologías**
 
-# e2e tests
-$ npm run test:e2e
+- **Framework:** NestJS  
+- **Base de Datos:** MongoDB  
+- **ORM:** Mongoose  
+- **Environment Management:** Configuración con `@nestjs/config`  
+- **Testing:** Jest (opcional)  
 
-# test coverage
-$ npm run test:cov
-```
+---
 
-## Support
+✅ **Mejores Prácticas Implementadas**
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- **Responsabilidad Única (SRP)**: Cada clase y archivo tiene una responsabilidad específica.  
+- **Modularización**: La estructura del proyecto está organizada para agregar funcionalidades y módulos fácilmente.  
+- **Pruebas Automatizadas**: Se recomienda agregar tests con Jest.  
+- **Configuración Centralizada**: Uso de `@nestjs/config` para gestionar variables de entorno.
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
