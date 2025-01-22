@@ -13,6 +13,8 @@ This NestJS application is designed to offer:
 - **One-to-one and one-to-many entity relationships**.
 - Concrete examples of connecting and configuring services using **UseFactory**.
 - Implementation of single responsibility and clean architecture best practices in NestJS.
+- 🔐 **JWT Authentication & Authorization** with Passport strategies.
+- 👥 **Role-Based Access Control (RBAC)** for secure endpoints.
 
 ---
 
@@ -23,6 +25,16 @@ This NestJS application is designed to offer:
 - Implement relationships:  
   - **One-to-one relationship** (e.g., User ↔ Profile).  
   - **One-to-many relationship** (e.g., Categories ↔ Products).  
+
+### **Authentication & Authorization**
+- **JWT Implementation** with Passport
+  - JWT Strategy for token validation
+  - Local Strategy for credentials validation
+  - Custom Guards for route protection
+- **Role-Based Access Control**
+  - Role hierarchy (ADMIN → SUPERVISOR → SELLER → CUSTOMER)
+  - Custom decorators for role verification
+  - Guards for role-based access
 
 ### **Modularization**  
 - The modularized structure allows adding and scaling functionalities without losing project organization.
@@ -37,6 +49,12 @@ This NestJS application is designed to offer:
 - **Framework:** NestJS  
 - **Database:** MongoDB  
 - **ORM:** Mongoose  
+- **Authentication:** 
+  - Passport.js
+  - @nestjs/passport
+  - @nestjs/jwt
+  - passport-jwt
+  - passport-local
 - **Environment Management:** Configuration with `@nestjs/config`  
 - **Testing:** Jest (optional)  
 
@@ -48,5 +66,12 @@ This NestJS application is designed to offer:
 - **Modularization**: Project structure is organized to easily add functionalities and modules.  
 - **Automated Testing**: Adding tests with Jest is recommended.  
 - **Centralized Configuration**: Use of `@nestjs/config` to manage environment variables.
+- **Security Best Practices**:
+  - JWT token encryption
+  - Password hashing with bcrypt
+  - Role-based authorization
+  - Protected routes with Guards
 
 ---
+
+
