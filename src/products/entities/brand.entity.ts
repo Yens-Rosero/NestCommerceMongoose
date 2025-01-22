@@ -1,9 +1,16 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+import { Product } from './product.entity';
 
-@Schema()
+export type BrandDocument = Brand & Document;
+
+@Schema({ timestamps: true })
 export class Brand {
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true, trim: true })
   name: string;
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Product' }] })
+  products: Types.Array<Product>;
 
   @Prop()
   image: string;

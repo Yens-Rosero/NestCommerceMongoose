@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import * as bcrypt from 'bcrypt';
 
 import { User } from '../entities/user.entity';
 import { Order } from '../entities/order.entity';
@@ -17,7 +18,6 @@ export class UsersService {
     private configService: ConfigService,
   ) {}
 
-
   async findAll() {
     return this.userModel.find().exec();
   }
@@ -32,6 +32,8 @@ export class UsersService {
 
   async create(data: CreateUserDto) {
     const newUser = new this.userModel(data);
+    const hashPassword = await bcrypt.hash(data.password, 10);
+    newUser.password = hashPassword;
     return newUser.save();
   }
 
@@ -54,6 +56,9 @@ export class UsersService {
     }
   }
 
-   async getOrderByUser(id: string) {
+  async getOrderByUser(id: string) {}
+
+  async findByEmail(email: string) {
+    return this.userModel.findOne({ email });
   }
 }

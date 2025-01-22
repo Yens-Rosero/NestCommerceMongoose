@@ -3,14 +3,11 @@ version: '3.3'
 services:
   mongo:
     image: mongo:latest
+    container_name: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    container_name: mongo
     ports:
       - "27017:27017"
     volumes:
       - ./data:/data/db
-
-
-

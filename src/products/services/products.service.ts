@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
 
@@ -14,40 +18,60 @@ export class ProductsService {
   constructor(
     @InjectModel(Product.name) private productModel: Model<Product>,
   ) {}
+
   async findAll(params?: FilterProductsDto) {
-    if (params) {
+    try {
       const filters: FilterQuery<Product> = {};
-      const { limit, offset, minPrice, maxPrice } = params;
-      if (minPrice && maxPrice) {
-        filters.price = { $gte: minPrice, $lte: maxPrice };
+      const {
+        limit = 10,
+        offset = 0,
+        minPrice,
+        maxPrice,
+        category,
+        brand,
+      } = params || ({} as FilterProductsDto);
+
+      // Apply price filter
+      if (minPrice !== undefined || maxPrice !== undefined) {
+        filters.price = {};
+        if (minPrice !== undefined) filters.price.$gte = minPrice;
+        if (maxPrice !== undefined) filters.price.$lte = maxPrice;
       }
 
-      return this.productModel
-        .find(filters)
-        .populate('brand')
-        .skip(offset)
-        .limit(limit)
-        .exec();
+      // Apply category filter
+      if (category) {
+        filters.category = category;
+      }
+
+      // Apply brand filter
+      if (brand) {
+        filters.brand = brand;
+      }
+
+      const [products, total] = await Promise.all([
+        this.productModel
+          .find(filters)
+          .populate(['brand', 'category'])
+          .skip(offset)
+          .limit(limit)
+          .sort({ createdAt: -1 })
+          .exec(),
+        this.productModel.countDocuments(filters).exec(),
+      ]);
+
+      return {
+        products,
+        total,
+      };
+    } catch (error) {
+      throw new BadRequestException('Error filtering products');
     }
-    return this.productModel.find().populate('brand').exec();
   }
 
   async findOne(id: string) {
-    const product = this.productModel.findById(id).populate('brand').exec();
-    if (!product) {
-      throw new NotFoundException(`Product #${id} not found`);
-    }
-    return product;
-  }
-
-  async create(data: CreateProductDto) {
-    const newProduct = new this.productModel(data);
-    return newProduct.save();
-  }
-
-  async update(id: string, changes: UpdateProductDto) {
-    const product = this.productModel
-      .findByIdAndUpdate(id, { $set: changes }, { new: true })
+    const product = await this.productModel
+      .findById(id)
+      .populate(['brand', 'category'])
       .exec();
     if (!product) {
       throw new NotFoundException(`Product #${id} not found`);
@@ -55,11 +79,50 @@ export class ProductsService {
     return product;
   }
 
-  async remove(id: string) {
+  async create(data: CreateProductDto) {
     try {
-      return await this.productModel.findByIdAndDelete(id);
+      const newProduct = new this.productModel(data);
+      return await newProduct.save();
     } catch (error) {
+      throw new BadRequestException('Error creating product');
+    }
+  }
+
+  async update(id: string, changes: UpdateProductDto) {
+    try {
+      const product = await this.productModel
+        .findByIdAndUpdate(id, { $set: changes }, { new: true })
+        .populate(['brand', 'category'])
+        .exec();
+      if (!product) {
+        throw new NotFoundException(`Product #${id} not found`);
+      }
+      return product;
+    } catch (error) {
+      if (error instanceof NotFoundException) throw error;
+      throw new BadRequestException('Error updating product');
+    }
+  }
+
+  async remove(id: string) {
+    const product = await this.productModel.findByIdAndDelete(id).exec();
+    if (!product) {
       throw new NotFoundException(`Product #${id} not found`);
     }
+    return product;
+  }
+
+  async findByCategory(categoryId: string) {
+    return this.productModel
+      .find({ category: categoryId })
+      .populate(['brand', 'category'])
+      .exec();
+  }
+
+  async findByBrand(brandId: string) {
+    return this.productModel
+      .find({ brand: brandId })
+      .populate(['brand', 'category'])
+      .exec();
   }
 }

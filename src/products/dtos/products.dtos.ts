@@ -65,4 +65,11 @@ export class FilterProductsDto {
   @IsPositive()
   maxPrice: number;
 
+  @IsOptional()
+  @IsMongoId()
+  readonly category: string;
+
+  @IsOptional()
+  @IsMongoId()
+  readonly brand: string;
 }

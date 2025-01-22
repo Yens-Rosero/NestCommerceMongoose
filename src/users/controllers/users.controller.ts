@@ -7,11 +7,20 @@ import {
   Put,
   Delete,
   ParseIntPipe,
+  UseInterceptors,
 } from '@nestjs/common';
 
 import { UsersService } from '../services/users.service';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 import { MongoIdPipe } from 'src/common/mongo-id.pipe';
+import { SanitizeMongooseModelInterceptor } from 'nestjs-mongoose-exclude';
+
+@UseInterceptors(
+  new SanitizeMongooseModelInterceptor({
+    excludeMongooseId: false,
+    excludeMongooseV: true,
+  }),
+)
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
@@ -37,10 +46,7 @@ export class UsersController {
   }
 
   @Put(':id')
-  update(
-    @Param('id', MongoIdPipe) id: string,
-    @Body() payload: UpdateUserDto,
-  ) {
+  update(@Param('id', MongoIdPipe) id: string, @Body() payload: UpdateUserDto) {
     return this.usersService.update(id, payload);
   }
 

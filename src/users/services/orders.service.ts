@@ -42,4 +42,10 @@ export class OrdersService {
       .findByIdAndUpdate(id, { $push: { products: { $each: productsIds } } }, { new: true })
       .exec();
   }
+
+  async ordersByCustomer(customerId: string) {
+    return this.orderModel.find({
+      customer: { id: customerId }
+    }).exec();
+  }
 }

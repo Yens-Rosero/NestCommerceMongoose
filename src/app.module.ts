@@ -9,8 +9,8 @@ import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
 import { DatabaseModule } from './database/database.module';
 import { enviroments } from './enviroments';
+import { AuthModule } from './auth/auth.module';
 import config from './config';
-
 
 @Module({
   imports: [
@@ -19,15 +19,21 @@ import config from './config';
       load: [config],
       isGlobal: true,
       validationSchema: Joi.object({
-        API_KEY: Joi.number().required(),
-        DATABASE_NAME: Joi.string().required(),
-        DATABASE_PORT: Joi.number().required(),
+        API_KEY: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
+        MONGO_DB_NAME: Joi.string().required(),
+        MONGO_PORT: Joi.number().required(),
+        MONGO_INITDB_ROOT_USERNAME: Joi.string().required(),
+        MONGO_INITDB_ROOT_PASSWORD: Joi.string().required(),
+        MONGO_HOST: Joi.string().required(),
+        MONGO_CONNECTION: Joi.string().required(),
       }),
     }),
     HttpModule,
+    DatabaseModule,
     UsersModule,
     ProductsModule,
-    DatabaseModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
