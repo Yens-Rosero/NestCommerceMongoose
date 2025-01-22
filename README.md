@@ -1,51 +1,52 @@
-📚 **NestJS MongoDB API** 🚀
+# 📚 **NestJS MongoDB API** 🚀
 
-Este proyecto es una aplicación basada en **NestJS**, utilizando **MongoDB** con el ORM **Mongoose**. La estructura modularizada y las relaciones implementadas siguen las mejores prácticas de responsabilidad única y arquitectura limpia, garantizando la escalabilidad y el mantenimiento eficiente del código.
-
----
-
-📖 **Descripción del Proyecto**
-
-Esta aplicación NestJS está diseñada para ofrecer:
-
-- 📦 **Modularización eficiente** para una arquitectura escalable.
-- 🔗 **Conexión a MongoDB** utilizando Mongoose como ORM.
-- **Relaciones uno a uno y uno a muchos entre entidades**.
-- Ejemplos concretos de cómo conectarse y configurar servicios mediante **UseFactory**.
-- Implementación de las mejores prácticas de responsabilidad única y arquitectura en NestJS.
+This project is an application based on **NestJS**, using **MongoDB** with the **Mongoose** ORM. The modularized structure and implemented relationships follow best practices of single responsibility and clean architecture, ensuring scalability and efficient code maintenance.
 
 ---
 
-🔍 **Características Principales**
+## 📖 **Project Description**
 
-- **Uso de Mongoose**  
-  - Conecta tu proyecto a MongoDB de forma rápida y eficiente.  
-  - Implementa relaciones:  
-    - **Relación uno a uno** (ej. Usuario ↔ Perfil).  
-    - **Relación uno a muchos** (ej. Categorías ↔ Productos).  
+This NestJS application is designed to offer:
 
-- **Modularización**  
-  - La estructura modularizada permite agregar y escalar funcionalidades sin perder la organización del proyecto.
-
-- **Responsabilidad Única (SRP - Single Responsibility Principle)**  
-  - Cada archivo y clase sigue el principio de responsabilidad única, facilitando el mantenimiento y las actualizaciones futuras.
+- 📦 **Efficient modularization** for scalable architecture.
+- 🔗 **MongoDB connection** using Mongoose as ORM.
+- **One-to-one and one-to-many entity relationships**.
+- Concrete examples of connecting and configuring services using **UseFactory**.
+- Implementation of single responsibility and clean architecture best practices in NestJS.
 
 ---
 
-🛠 **Tecnologías**
+## 🔍 **Main Features**
+
+### **Mongoose Usage**  
+- Connect your project to MongoDB quickly and efficiently.  
+- Implement relationships:  
+  - **One-to-one relationship** (e.g., User ↔ Profile).  
+  - **One-to-many relationship** (e.g., Categories ↔ Products).  
+
+### **Modularization**  
+- The modularized structure allows adding and scaling functionalities without losing project organization.
+
+### **Single Responsibility Principle (SRP)**  
+- Each file and class follows the single responsibility principle, facilitating maintenance and future updates.
+
+---
+
+## 🛠 **Technologies**
 
 - **Framework:** NestJS  
-- **Base de Datos:** MongoDB  
+- **Database:** MongoDB  
 - **ORM:** Mongoose  
-- **Environment Management:** Configuración con `@nestjs/config`  
-- **Testing:** Jest (opcional)  
+- **Environment Management:** Configuration with `@nestjs/config`  
+- **Testing:** Jest (optional)  
 
 ---
 
-✅ **Mejores Prácticas Implementadas**
+## ✅ **Implemented Best Practices**
 
-- **Responsabilidad Única (SRP)**: Cada clase y archivo tiene una responsabilidad específica.  
-- **Modularización**: La estructura del proyecto está organizada para agregar funcionalidades y módulos fácilmente.  
-- **Pruebas Automatizadas**: Se recomienda agregar tests con Jest.  
-- **Configuración Centralizada**: Uso de `@nestjs/config` para gestionar variables de entorno.
+- **Single Responsibility (SRP)**: Each class and file has a specific responsibility.  
+- **Modularization**: Project structure is organized to easily add functionalities and modules.  
+- **Automated Testing**: Adding tests with Jest is recommended.  
+- **Centralized Configuration**: Use of `@nestjs/config` to manage environment variables.
 
+---
